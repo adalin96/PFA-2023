@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -53,5 +54,15 @@ public class HallRestController {
             return new ResponseEntity<>("hall doesn't exist", HttpStatus.OK);
         service.delete(hallVoId);
         return new ResponseEntity<>("Hall is deleted successsfully", HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/rest/sort/{fieldName}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+    public List<HallVo> sortBy(@PathVariable String fieldName) {
+        return service.sortBy(fieldName);
+    }
+
+    @GetMapping("/rest/pagination/{pageid}/{size}")
+    public List<HallVo> pagination(@PathVariable int pageid, @PathVariable int size, Model m) {
+        return service.findAll(pageid, size);
     }
 }
