@@ -9,60 +9,81 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-//import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequestMapping("/rest/hall")
 public class HallRestController {
+
     @Autowired
-    private IHallService service;
+    private final IHallService hallService;
+
+    public HallRestController(IHallService hallService) {
+        this.hallService = hallService;
+    }
 
     @GetMapping(value = "/rest/hall")
     public List<HallVo> getAll() {
-        return service.getHalls();
+        return hallService.getHalls();
+    }
+
+    @GetMapping("")
+    public ResponseEntity<Object> getAllHalls() {
+        List<HallVo> hallVos = hallService.getHalls();
+        if (hallVos == null)
+            return new ResponseEntity<>("the list of halls is empty", HttpStatus.OK);
+        return new ResponseEntity<>(hallVos, HttpStatus.OK);
     }
 
     @GetMapping(value = "/rest/hall/{id}")
     public ResponseEntity<Object> getHallById(@PathVariable(value = "id") Long hallVoId) {
-        HallVo hallVoFound = service.getHallById(hallVoId);
+        HallVo hallVoFound = hallService.getHallById(hallVoId);
         if (hallVoFound == null)
             return new ResponseEntity<>("hall doesn't exist", HttpStatus.OK);
         return new ResponseEntity<>(hallVoFound, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/rest/hall")
+    @GetMapping("/hall/search")
+    public ResponseEntity<Object> searchHall(@RequestParam("name") String name, @RequestParam("size") String size, @RequestParam("tv") Boolean tv, @RequestParam("projector") Boolean projector, @RequestParam("speakers") Boolean speakers, @RequestParam("mic") Boolean mic) {
+        List<HallVo> hallVo = hallService.search(name, size, tv, projector, speakers, mic);
+        if (hallVo == null)
+            return new ResponseEntity<>("hall does not exit", HttpStatus.OK);
+        return new ResponseEntity<>(hallVo, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/rest/hall/create")
     public ResponseEntity<Object> createHall(/*@Valid*/ @RequestBody HallVo hallVo) {
-        service.save(hallVo);
+        hallService.save(hallVo);
         return new ResponseEntity<>("hall is created successfully", HttpStatus.CREATED);
     }
 
 
-    @PutMapping(value = "/rest/hall/{id}")
+    @PutMapping(value = "/rest/hall/update/{id}")
     public ResponseEntity<Object> updateHall(@PathVariable(name = "id") Long hallVoId, @RequestBody HallVo hallVo) {
-        HallVo hallVoFound = service.getHallById(hallVoId);
+        HallVo hallVoFound = hallService.getHallById(hallVoId);
         if (hallVoFound == null)
             return new ResponseEntity<>("hall doesn't exist", HttpStatus.OK);
         hallVo.setId(hallVoId);
-        service.save(hallVo);
+        hallService.save(hallVo);
         return new ResponseEntity<>("Hall is updated successsfully", HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/rest/hall/{id}")
+    @DeleteMapping(value = "/rest/hall/delete/{id}")
     public ResponseEntity<Object> deleteHall(@PathVariable(name = "id") Long hallVoId) {
-        HallVo hallVoFound = service.getHallById(hallVoId);
+        HallVo hallVoFound = hallService.getHallById(hallVoId);
         if (hallVoFound == null)
             return new ResponseEntity<>("hall doesn't exist", HttpStatus.OK);
-        service.delete(hallVoId);
-        return new ResponseEntity<>("Hall is deleted successsfully", HttpStatus.OK);
+        hallService.delete(hallVoId);
+        return new ResponseEntity<>("Hall is deleted successfully", HttpStatus.OK);
     }
 
     @GetMapping(value = "/rest/sort/{fieldName}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
     public List<HallVo> sortBy(@PathVariable String fieldName) {
-        return service.sortBy(fieldName);
+        return hallService.sortBy(fieldName);
     }
 
     @GetMapping("/rest/pagination/{pageid}/{size}")
     public List<HallVo> pagination(@PathVariable int pageid, @PathVariable int size, Model m) {
-        return service.findAll(pageid, size);
+        return hallService.findAll(pageid, size);
     }
 }
