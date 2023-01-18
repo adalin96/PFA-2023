@@ -12,6 +12,6 @@ public interface HallRepository extends JpaRepository<Hall /*la class model*/, L
     List<Hall> findByProjector(Boolean projector);
     List<Hall> findBySpeakers(Boolean speakers);
     List<Hall> findByMic(Boolean mic);
-    List<Hall> findByPrice(Boolean price);
+//  List<Hall> findByPrice(Boolean price);
 
 }

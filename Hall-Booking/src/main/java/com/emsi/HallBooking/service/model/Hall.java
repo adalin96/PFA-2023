@@ -1,15 +1,23 @@
 package com.emsi.HallBooking.service.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Table(name = "Hall")
 public class Hall implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false, unique = true)
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 60)
     private String name;
     @Column(nullable = false)
     private String size;
@@ -23,83 +31,6 @@ public class Hall implements Serializable {
     private Boolean mic;
     @Column(nullable = false)
     private Double price;
-
-    public Hall() {
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public Boolean getTv() {
-        return tv;
-    }
-
-    public void setTv(Boolean tv) {
-        this.tv = tv;
-    }
-
-    public Boolean getProjector() {
-        return projector;
-    }
-
-    public void setProjector(Boolean projector) {
-        this.projector = projector;
-    }
-
-    public Boolean getSpeakers() {
-        return speakers;
-    }
-
-    public void setSpeakers(Boolean speakers) {
-        this.speakers = speakers;
-    }
-
-    public Boolean getMic() {
-        return mic;
-    }
-
-    public void setMic(Boolean mic) {
-        this.mic = mic;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Hall(String name, String size, Boolean tv, Boolean projector, Boolean speakers, Boolean mic, Double price) {
-        this.name = name;
-        this.size = size;
-        this.tv = tv;
-        this.projector = projector;
-        this.speakers = speakers;
-        this.mic = mic;
-        this.price = price;
-    }
-
 
 
     @Override

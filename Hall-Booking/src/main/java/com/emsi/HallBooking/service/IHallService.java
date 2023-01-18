@@ -1,11 +1,10 @@
 package com.emsi.HallBooking.service;
 
 import com.emsi.HallBooking.domaine.HallVo;
-import com.emsi.HallBooking.service.model.Hall;
 
 import java.util.List;
 
-public interface IService {
+public interface IHallService {
     List<HallVo> getHalls();
     void save(HallVo hallVo);
     HallVo getHallById(Long id);

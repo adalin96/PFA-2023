@@ -33,6 +33,7 @@ public class HallConverter {
         }
 
         Hall hall = new Hall();
+
         hall.setId(hallVo.getId());
         hall.setMic(hallVo.getMic());
         hall.setName(hallVo.getName());

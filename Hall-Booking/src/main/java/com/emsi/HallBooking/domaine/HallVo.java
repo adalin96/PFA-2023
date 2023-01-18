@@ -2,8 +2,7 @@ package com.emsi.HallBooking.domaine;
 
 import lombok.*;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class HallVo {

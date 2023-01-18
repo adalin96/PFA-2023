@@ -1,7 +1,7 @@
 package com.emsi.HallBooking.controller;
 
 import com.emsi.HallBooking.domaine.HallVo;
-import com.emsi.HallBooking.service.IService;
+import com.emsi.HallBooking.service.IHallService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 public class Hallcontroller {
-    private IService service;
+    private IHallService service;
 
     @RequestMapping("/")
     public String showWelcomeFile(Model model) {

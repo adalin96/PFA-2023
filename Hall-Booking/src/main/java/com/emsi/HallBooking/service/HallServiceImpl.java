@@ -4,14 +4,16 @@ import com.emsi.HallBooking.dao.HallRepository;
 import com.emsi.HallBooking.domaine.HallConverter;
 import com.emsi.HallBooking.domaine.HallVo;
 import com.emsi.HallBooking.service.model.Hall;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
+import org.springframework.stereotype.Service;
 
-import javax.lang.model.element.Name;
 import java.util.List;
 
-public class ServiceImpl implements IService, CommandLineRunner {
+@Service
+public class HallServiceImpl implements IHallService {
 
+    @Autowired
     private HallRepository hallRepository;
 
     @Override
@@ -99,7 +101,7 @@ public class ServiceImpl implements IService, CommandLineRunner {
             hall.setMic(mic);
 
             Example<Hall> query = Example.of(hall, matcher);
-            return HallConverter.toListHallVo(hallRepository.findAll(query, Sort.by("idHall")));
+            return HallConverter.toListHallVo(hallRepository.findAll(query, Sort.by("id")));
     }
 
     @Override
@@ -113,16 +115,16 @@ public class ServiceImpl implements IService, CommandLineRunner {
         return HallConverter.toListHallVo(hallRepository.findAll(Sort.by(fieldName)));
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        hallRepository.deleteAll();
-        hallRepository.save(new Hall("amphi1", "L", false,false,false,false,100.0));
-        hallRepository.save(new Hall("amphi2", "L",false,false,false,false,100.0));
-        hallRepository.save(new Hall("amphi3", "L", false,false,false,false,100.0));
-        hallRepository.save(new Hall("cc4", "S", false,false,false,false,100.0));
-        hallRepository.save(new Hall("cc5", "S", false,false,false,false,100.0));
-        hallRepository.save(new Hall("cc6", "S", false,false,false,false,100.0));
-        hallRepository.save(new Hall("a7", "M", false,false,false,false,100.0));
-        hallRepository.save(new Hall("a8", "M", false,false,false,false,100.0));
-    }
+//    @Override
+//    public void run(String... args) throws Exception {
+//        hallRepository.deleteAll();
+//        hallRepository.save(new Hall("amphi1", "L", false,false,false,false,100.0));
+//        hallRepository.save(new Hall("amphi2", "L",false,false,false,false,100.0));
+//        hallRepository.save(new Hall("amphi3", "L", false,false,false,false,100.0));
+//        hallRepository.save(new Hall("cc4", "S", false,false,false,false,100.0));
+//        hallRepository.save(new Hall("cc5", "S", false,false,false,false,100.0));
+//        hallRepository.save(new Hall("cc6", "S", false,false,false,false,100.0));
+//        hallRepository.save(new Hall("a7", "M", false,false,false,false,100.0));
+//        hallRepository.save(new Hall("a8", "M", false,false,false,false,100.0));
+//    }
 }
