@@ -2,13 +2,13 @@ package com.emsi.HallBooking.controller.rest;
 
 import com.emsi.HallBooking.domaine.BookingVo;
 import com.emsi.HallBooking.service.IBookingService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Date;
 import java.util.List;
 
@@ -54,7 +54,7 @@ public class BookingRestController {
     }
 
     @PostMapping(value = "/rest/booking/create")
-    public ResponseEntity<Object> createBooking(/*@Valid*/ @RequestBody BookingVo bookingVo) {
+    public ResponseEntity<Object> createBooking(@Valid @RequestBody BookingVo bookingVo) {
         bookingService.save(bookingVo);
         return new ResponseEntity<>("booking is created successfully", HttpStatus.CREATED);
     }

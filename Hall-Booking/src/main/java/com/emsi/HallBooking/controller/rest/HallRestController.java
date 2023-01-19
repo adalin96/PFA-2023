@@ -2,13 +2,13 @@ package com.emsi.HallBooking.controller.rest;
 
 import com.emsi.HallBooking.domaine.HallVo;
 import com.emsi.HallBooking.service.IHallService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -52,7 +52,7 @@ public class HallRestController {
     }
 
     @PostMapping(value = "/rest/hall/create")
-    public ResponseEntity<Object> createHall(/*@Valid*/ @RequestBody HallVo hallVo) {
+    public ResponseEntity<Object> createHall(@Valid @RequestBody HallVo hallVo) {
         hallService.save(hallVo);
         return new ResponseEntity<>("hall is created successfully", HttpStatus.CREATED);
     }
