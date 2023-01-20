@@ -6,15 +6,12 @@ import com.emsi.HallBooking.domaine.RoleVo;
 import com.emsi.HallBooking.domaine.UserConverter;
 import com.emsi.HallBooking.domaine.UserVo;
 import com.emsi.HallBooking.service.IUserService;
-import com.emsi.HallBooking.service.model.AppUser;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
