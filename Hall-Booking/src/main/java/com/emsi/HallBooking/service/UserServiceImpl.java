@@ -94,15 +94,15 @@ public class UserServiceImpl implements IUserService{
         return UserConverter.toUserVoList((userRepository.findAll()));
     }
 
-//    @Override this for some other time
-//    public List<RoleVo> getAllRoles() { this for some other time
-//        return RoleConverter.toRoleVoList((roleRepository.findAll()));
-//    }
-//this for some other time
-//    @Override this for some other time
-//    public RoleVo getRoleByName(String role) { this for some other time
-//        return RoleConverter.toRoleVo(roleRepository.findByRole(role));
-//    }
+    @Override
+    public List<RoleVo> getAllRoles() {
+        return RoleConverter.toRoleVoList((roleRepository.findAll()));
+    }
+
+    @Override
+    public RoleVo getRoleByName(String role) {
+        return RoleConverter.toRoleVo((roleRepository.findByRole(role)));
+    }
 
     @Override
     public void cleanDataBase() {

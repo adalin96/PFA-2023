@@ -20,4 +20,8 @@ public class UserVo {
     private String password;
 
     private List<RoleVo> roles = new ArrayList<>();
+
+    public <T> UserVo(String admin1, String admin11, List<T> asList) {
+
+    }
 }

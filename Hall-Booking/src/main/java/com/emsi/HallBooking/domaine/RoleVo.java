@@ -13,4 +13,6 @@ public class RoleVo {
 
     private String role;
 
+    public RoleVo(String admin) {
+    }
 }
