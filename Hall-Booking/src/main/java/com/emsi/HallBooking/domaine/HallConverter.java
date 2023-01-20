@@ -8,42 +8,41 @@ import java.util.List;
 public class HallConverter {
 
     //fonction qui fait la convertion du Hall en HallVo
-    public static HallVo toHallVo(Hall hall) {
-        if (hall == null || hall.getId() == null) {
+    public static HallVo toHallVo(Hall hallBo) {
+        if (hallBo == null) {
             return null;
         }
-
         HallVo hallVo = new HallVo();
-        hallVo.setId(hall.getId());
-        hallVo.setMic(hall.getMic());
-        hallVo.setName(hall.getName());
-        hallVo.setPrice(hall.getPrice());
-        hallVo.setProjector(hall.getProjector());
-        hallVo.setSize(hall.getSize());
-        hallVo.setSpeakers(hall.getSpeakers());
-        hallVo.setName(hall.getName());
+
+        hallVo.setId(hallBo.getId());
+        hallVo.setName(hallBo.getName());
+        hallVo.setSize(hallBo.getSize());
+        hallVo.setTv(hallBo.getTv());
+        hallVo.setProjector(hallBo.getProjector());
+        hallVo.setSpeakers(hallBo.getSpeakers());
+        hallVo.setMic(hallBo.getMic());
+        hallVo.setPrice(hallBo.getPrice());
 
         return hallVo;
     }
 
     //fonction qui fait la convertion du HallVo en Hall
-    public static Hall toHall(HallVo hallVo) {
-        if (hallVo == null || hallVo.getId() == null) {
+    public static Hall toHallBo(HallVo hallVo) {
+        if (hallVo == null) {
             return null;
         }
+        Hall hallBo = new Hall();
 
-        Hall hall = new Hall();
+        hallBo.setId(hallVo.getId());
+        hallBo.setName(hallVo.getName());
+        hallBo.setSize(hallVo.getSize());
+        hallBo.setTv(hallVo.getTv());
+        hallBo.setProjector(hallVo.getProjector());
+        hallBo.setSpeakers(hallVo.getSpeakers());
+        hallBo.setMic(hallVo.getMic());
+        hallBo.setPrice(hallVo.getPrice());
 
-        hall.setId(hallVo.getId());
-        hall.setMic(hallVo.getMic());
-        hall.setName(hallVo.getName());
-        hall.setPrice(hallVo.getPrice());
-        hall.setProjector(hallVo.getProjector());
-        hall.setSize(hallVo.getSize());
-        hall.setSpeakers(hallVo.getSpeakers());
-        hall.setName(hallVo.getName());
-
-        return hall;
+        return hallBo;
     }
 
     //fonction convertie une list de Hall en une list de HallVo

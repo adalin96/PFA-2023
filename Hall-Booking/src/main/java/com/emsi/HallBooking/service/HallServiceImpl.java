@@ -4,6 +4,7 @@ import com.emsi.HallBooking.dao.HallRepository;
 import com.emsi.HallBooking.domaine.HallConverter;
 import com.emsi.HallBooking.domaine.HallVo;
 import com.emsi.HallBooking.service.model.Hall;
+import jakarta.persistence.criteria.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class HallServiceImpl implements IHallService {
 
     @Override
     public void save(HallVo hallVo) {
-        hallRepository.save(HallConverter.toHall(hallVo));
+        hallRepository.save(HallConverter.toHallBo(hallVo));
     }
 
     @Override
@@ -84,24 +85,35 @@ public class HallServiceImpl implements IHallService {
 
     @Override
     public List<HallVo> search(String name, String size, Boolean tv, Boolean projector, Boolean speakers, Boolean mic) {
-            // Only look for non-null attributes using Query By Example that has only non-null attributes
-            ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreNullValues();
+        // Only look for non-null attributes using Query By Example that has only non-null attributes
+        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreNullValues()
+            // Name is substring with ignored case
+            .withMatcher("name", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
 
-            Hall hall = new Hall();
+        Hall hall = new Hall();
 
-            if (!name.equals("")) {
-                hall.setName(name);
-            }
-            if (!size.equals("")) {
-                hall.setSize(size);
-            }
-            hall.setTv(tv);
-            hall.setProjector(projector);
-            hall.setSpeakers(speakers);
-            hall.setMic(mic);
+        if (!name.equals("")) {
+            hall.setName(name);
+        }
+        if (!size.equals("")) {
+            hall.setSize(size);
+        }
+        // If user selects one of these only then will they be in the Example
+        if (tv.equals(true)) {
+            hall.setTv(true);
+        }
+        if (projector.equals(true)) {
+            hall.setProjector(true);
+        }
+        if (speakers.equals(true)) {
+            hall.setSpeakers(true);
+        }
+        if (mic.equals(true)) {
+            hall.setMic(true);
+        }
 
-            Example<Hall> query = Example.of(hall, matcher);
-            return HallConverter.toListHallVo(hallRepository.findAll(query, Sort.by("id")));
+        Example<Hall> query = Example.of(hall, matcher);
+        return HallConverter.toListHallVo(hallRepository.findAll(query, Sort.by("id")));
     }
 
     @Override
