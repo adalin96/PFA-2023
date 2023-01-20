@@ -1,5 +1,6 @@
 package com.emsi.HallBooking.service.model;
 
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -8,17 +9,13 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-@Data
-@Entity
-@Table(name = "user")
-@NoArgsConstructor
-@AllArgsConstructor
-public class User {
+@Entity @Data @NoArgsConstructor @AllArgsConstructor
+public class AppUser {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Length(min = 5, message = "*Your username must have at least 5 characters")
@@ -30,6 +27,5 @@ public class User {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles = new ArrayList<Role>();
+    private List<Role> roles = new ArrayList<>();
 }

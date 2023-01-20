@@ -1,2 +1,11 @@
-package com.emsi.HallBooking.dao;public class RoleRepository {
+package com.emsi.HallBooking.dao;
+
+import com.emsi.HallBooking.service.model.Role;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface RoleRepository extends JpaRepository<Role, Integer> {
+    Role findByRole(String role); //findByNameOfTheRole
+    List<Role> findAll();
 }

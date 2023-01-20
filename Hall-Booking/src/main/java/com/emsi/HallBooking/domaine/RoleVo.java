@@ -1,17 +1,16 @@
 package com.emsi.HallBooking.domaine;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class RoleVo {
 
-    private int id;
-    private String role;
+    private Long id;
 
-    public RoleVo(String role) {
-        this.role = role;
-    }
+    private String role;
 
 }
