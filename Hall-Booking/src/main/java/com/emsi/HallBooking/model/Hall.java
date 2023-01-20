@@ -1,15 +1,17 @@
-package com.emsi.HallBooking.service.model;
+package com.emsi.HallBooking.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 @Entity
 @Table(name = "Hall")
 public class Hall implements Serializable {

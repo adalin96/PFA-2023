@@ -3,8 +3,7 @@ package com.emsi.HallBooking.service;
 import com.emsi.HallBooking.dao.HallRepository;
 import com.emsi.HallBooking.domaine.HallConverter;
 import com.emsi.HallBooking.domaine.HallVo;
-import com.emsi.HallBooking.service.model.Hall;
-import jakarta.persistence.criteria.Predicate;
+import com.emsi.HallBooking.model.Hall;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -98,7 +97,7 @@ public class HallServiceImpl implements IHallService {
         if (!size.equals("")) {
             hall.setSize(size);
         }
-        // If user selects one of these only then will they be in the Example
+        // Only if true matters
         if (tv.equals(true)) {
             hall.setTv(true);
         }

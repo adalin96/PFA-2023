@@ -3,7 +3,7 @@ package com.emsi.HallBooking.service;
 import com.emsi.HallBooking.dao.BookingRepository;
 import com.emsi.HallBooking.domaine.BookingConverter;
 import com.emsi.HallBooking.domaine.BookingVo;
-import com.emsi.HallBooking.service.model.Booking;
+import com.emsi.HallBooking.model.Booking;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -61,7 +61,7 @@ public class BookingServiceImpl implements IBookingService{
     }
 
     @Override
-    public List<BookingVo> search(Date date, Long idHall, Long idClient) {
+    public List<BookingVo> isAvailable(Date date, Long idHall, Long idClient) {
         // Only look for non-null attributes using Query By Example that has only non-null attributes
         ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreNullValues();
 
@@ -71,9 +71,8 @@ public class BookingServiceImpl implements IBookingService{
         booking.setIdHall(idHall);
         booking.setIdClient(idClient);
 
-
         Example<Booking> query = Example.of(booking, matcher);
-        return BookingConverter.toListBookingVo(bookingRepository.findAll(query, Sort.by("idBooking")));
+        return BookingConverter.toListBookingVo(bookingRepository.findAll(query, Sort.by("id")));
     }
 
     @Override

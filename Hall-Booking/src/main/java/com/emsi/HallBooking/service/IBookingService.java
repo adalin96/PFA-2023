@@ -21,7 +21,7 @@ public interface IBookingService {
     List<BookingVo> findByIdClient(Long idClient);
 
     //multiple variable search
-    public List<BookingVo> search(Date date, Long idHall, Long idClient);
+    public List<BookingVo> isAvailable(Date date, Long idHall, Long idClient);
 
     //Pour la pagination
     List<BookingVo> findAll(int pageId, int size);

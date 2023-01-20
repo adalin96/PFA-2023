@@ -1,6 +1,6 @@
 package com.emsi.HallBooking.domaine;
 
-import com.emsi.HallBooking.service.model.Hall;
+import com.emsi.HallBooking.model.Hall;
 
 import java.util.ArrayList;
 import java.util.List;
