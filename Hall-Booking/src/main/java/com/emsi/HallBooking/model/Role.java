@@ -1,4 +1,4 @@
-package com.emsi.HallBooking.service.model;
+package com.emsi.HallBooking.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

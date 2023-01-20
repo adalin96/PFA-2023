@@ -1,4 +1,4 @@
-package com.emsi.HallBooking.service.model;
+package com.emsi.HallBooking.model;
 
 
 import jakarta.persistence.*;
@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Entity @Data @NoArgsConstructor @AllArgsConstructor

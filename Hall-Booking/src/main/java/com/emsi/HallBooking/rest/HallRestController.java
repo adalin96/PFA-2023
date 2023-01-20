@@ -1,4 +1,4 @@
-package com.emsi.HallBooking.controller.rest;
+package com.emsi.HallBooking.rest;
 
 import com.emsi.HallBooking.domaine.HallVo;
 import com.emsi.HallBooking.service.IHallService;
@@ -26,7 +26,7 @@ public class HallRestController {
     public ResponseEntity<Object> getAllHalls() {
         List<HallVo> hallVos = hallService.getHalls();
         if (hallVos == null)
-            return new ResponseEntity<>("the list of halls is empty", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("the list of halls is empty", HttpStatus.OK);
         return new ResponseEntity<>(hallVos, HttpStatus.OK);
     }
 
@@ -34,7 +34,7 @@ public class HallRestController {
     public ResponseEntity<Object> getHallById(@PathVariable(value = "id") Long hallVoId) {
         HallVo hallVoFound = hallService.getHallById(hallVoId);
         if (hallVoFound == null)
-            return new ResponseEntity<>("hall doesn't exist", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("hall doesn't exist", HttpStatus.OK);
         return new ResponseEntity<>(hallVoFound, HttpStatus.OK);
     }
 
@@ -43,8 +43,8 @@ public class HallRestController {
                                              @RequestParam("tv") Boolean tv, @RequestParam("projector") Boolean projector,
                                              @RequestParam("speakers") Boolean speakers, @RequestParam("mic") Boolean mic) {
         List<HallVo> hallsVo = hallService.search(name, size, tv, projector, speakers, mic);
-        if (hallsVo == null)
-            return new ResponseEntity<>("hall does not exit", HttpStatus.NOT_FOUND);
+        if (hallsVo.isEmpty())
+            return new ResponseEntity<>("no result", HttpStatus.OK);
         return new ResponseEntity<>(hallsVo, HttpStatus.OK);
     }
 
@@ -59,7 +59,7 @@ public class HallRestController {
     public ResponseEntity<Object> updateHall(@PathVariable(name = "id") Long hallVoId, @RequestBody HallVo hallVo) {
         HallVo hallVoFound = hallService.getHallById(hallVoId);
         if (hallVoFound == null)
-            return new ResponseEntity<>("hall doesn't exist", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("hall doesn't exist", HttpStatus.OK);
         hallVo.setId(hallVoId);
         hallService.save(hallVo);
         return new ResponseEntity<>("Hall is updated successfully", HttpStatus.OK);
@@ -69,7 +69,7 @@ public class HallRestController {
     public ResponseEntity<Object> deleteHall(@PathVariable(name = "id") Long hallVoId) {
         HallVo hallVoFound = hallService.getHallById(hallVoId);
         if (hallVoFound == null)
-            return new ResponseEntity<>("hall doesn't exist", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("hall doesn't exist", HttpStatus.OK);
         hallService.delete(hallVoId);
         return new ResponseEntity<>("Hall is deleted successfully", HttpStatus.OK);
     }

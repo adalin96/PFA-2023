@@ -11,7 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class BookingVo {
 
-    private Long idBooking;
+    private Long id;
 
     private Date date;
 

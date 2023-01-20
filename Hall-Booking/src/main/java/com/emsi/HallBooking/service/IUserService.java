@@ -2,8 +2,8 @@ package com.emsi.HallBooking.service;
 
 import com.emsi.HallBooking.domaine.RoleVo;
 import com.emsi.HallBooking.domaine.UserVo;
-import com.emsi.HallBooking.service.model.AppUser;
-import com.emsi.HallBooking.service.model.Role;
+import com.emsi.HallBooking.model.AppUser;
+import com.emsi.HallBooking.model.Role;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;

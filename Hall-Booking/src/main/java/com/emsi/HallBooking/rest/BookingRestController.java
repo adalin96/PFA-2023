@@ -1,9 +1,10 @@
-package com.emsi.HallBooking.controller.rest;
+package com.emsi.HallBooking.rest;
 
 import com.emsi.HallBooking.domaine.BookingVo;
 import com.emsi.HallBooking.service.IBookingService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -35,17 +36,17 @@ public class BookingRestController {
     public ResponseEntity<Object> getBookingById(@PathVariable(value = "id") Long bookingVoId) {
         BookingVo bookingVoFound = bookingService.getBookingById(bookingVoId);
         if (bookingVoFound == null)
-            return new ResponseEntity<>("booking doesn't exist", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("booking doesn't exist", HttpStatus.OK);
         return new ResponseEntity<>(bookingVoFound, HttpStatus.OK);
     }
 
 
-    @GetMapping("/search")
-    public ResponseEntity<Object> searchBooking(@RequestParam("date") Date date, @RequestParam("idHall") Long idHall, @RequestParam("idClient") Long idClient) {
-        List<BookingVo> bookingsVo = bookingService.search(date, idHall, idClient);
-        if (bookingsVo == null)
-            return new ResponseEntity<>("booking does not exit", HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(bookingsVo, HttpStatus.OK);
+    @PostMapping("/search")
+    public ResponseEntity<Object> searchBooking(@RequestBody BookingVo bookingVo) {
+      List<BookingVo> bookingsVo = bookingService.isAvailable(bookingVo.getDate(), bookingVo.getIdHall(), bookingVo.getIdClient());
+      if (bookingsVo == null)
+        return new ResponseEntity<>("booking does not exit", HttpStatus.OK);
+      return new ResponseEntity<>(bookingsVo, HttpStatus.OK);
     }
 
     @PostMapping(value = "/add")
@@ -58,17 +59,17 @@ public class BookingRestController {
     public ResponseEntity<Object> updateBooking(@PathVariable(name = "id") Long bookingId, @RequestBody BookingVo bookingVo) {
         BookingVo bookingFound = bookingService.getBookingById(bookingId);
         if (bookingFound == null)
-            return new ResponseEntity<>("Booking doesn't exist", HttpStatus.NOT_FOUND);
-        bookingVo.setIdBooking(bookingId);
+            return new ResponseEntity<>("Booking doesn't exist", HttpStatus.OK);
+        bookingVo.setId(bookingId);
         bookingService.save(bookingVo);
-        return new ResponseEntity<>("Booking is updated successsfully", HttpStatus.OK);
+        return new ResponseEntity<>("Booking is updated successfully", HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Object> deleteBooking(@PathVariable(name = "id") Long bookingId) {
         BookingVo bookingVoFound = bookingService.getBookingById(bookingId);
         if (bookingVoFound == null)
-            return new ResponseEntity<>("Booking doesn't exist", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Booking doesn't exist", HttpStatus.OK);
         bookingService.delete(bookingId);
         return new ResponseEntity<>("Booking is deleted successfully", HttpStatus.OK);
     }

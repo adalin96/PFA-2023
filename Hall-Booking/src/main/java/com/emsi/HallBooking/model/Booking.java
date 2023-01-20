@@ -1,4 +1,4 @@
-package com.emsi.HallBooking.service.model;
+package com.emsi.HallBooking.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false, unique = true)
-    private Long idBooking;
+    private Long id;
 
     @Column(nullable = false)
     private Date date;

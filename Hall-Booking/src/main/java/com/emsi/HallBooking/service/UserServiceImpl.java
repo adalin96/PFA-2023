@@ -1,29 +1,26 @@
 package com.emsi.HallBooking.service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import com.emsi.HallBooking.dao.RoleRepository;
 import com.emsi.HallBooking.dao.UserRepository;
-import com.emsi.HallBooking.service.model.AppUser;
 import com.emsi.HallBooking.domaine.RoleConverter;
 import com.emsi.HallBooking.domaine.RoleVo;
 import com.emsi.HallBooking.domaine.UserConverter;
 import com.emsi.HallBooking.domaine.UserVo;
-import com.emsi.HallBooking.service.model.Role;
-
-
+import com.emsi.HallBooking.model.AppUser;
+import com.emsi.HallBooking.model.Role;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 
 @Service("userService")
