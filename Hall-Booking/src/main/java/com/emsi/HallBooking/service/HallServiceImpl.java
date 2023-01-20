@@ -129,13 +129,13 @@ public class HallServiceImpl implements IHallService {
 //    @Override
 //    public void run(String... args) throws Exception {
 //        hallRepository.deleteAll();
-//        hallRepository.save(new Hall("amphi1", "L", false,false,false,false,100.0));
-//        hallRepository.save(new Hall("amphi2", "L",false,false,false,false,100.0));
-//        hallRepository.save(new Hall("amphi3", "L", false,false,false,false,100.0));
-//        hallRepository.save(new Hall("cc4", "S", false,false,false,false,100.0));
-//        hallRepository.save(new Hall("cc5", "S", false,false,false,false,100.0));
-//        hallRepository.save(new Hall("cc6", "S", false,false,false,false,100.0));
-//        hallRepository.save(new Hall("a7", "M", false,false,false,false,100.0));
-//        hallRepository.save(new Hall("a8", "M", false,false,false,false,100.0));
+//        hallRepository.saveUser(new Hall("amphi1", "L", false,false,false,false,100.0));
+//        hallRepository.saveUser(new Hall("amphi2", "L",false,false,false,false,100.0));
+//        hallRepository.saveUser(new Hall("amphi3", "L", false,false,false,false,100.0));
+//        hallRepository.saveUser(new Hall("cc4", "S", false,false,false,false,100.0));
+//        hallRepository.saveUser(new Hall("cc5", "S", false,false,false,false,100.0));
+//        hallRepository.saveUser(new Hall("cc6", "S", false,false,false,false,100.0));
+//        hallRepository.saveUser(new Hall("a7", "M", false,false,false,false,100.0));
+//        hallRepository.saveUser(new Hall("a8", "M", false,false,false,false,100.0));
 //    }
 }
