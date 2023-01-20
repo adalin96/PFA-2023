@@ -1,6 +1,6 @@
 package com.emsi.HallBooking.dao;
 
-import com.emsi.HallBooking.service.model.Role;
+import com.emsi.HallBooking.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

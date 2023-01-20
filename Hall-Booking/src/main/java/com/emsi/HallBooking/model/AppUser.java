@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Entity @Data @NoArgsConstructor @AllArgsConstructor

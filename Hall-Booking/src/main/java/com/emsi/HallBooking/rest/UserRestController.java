@@ -1,12 +1,11 @@
-package com.emsi.HallBooking.controller.rest;
-
+package com.emsi.HallBooking.rest;
 
 import com.emsi.HallBooking.domaine.RoleConverter;
 import com.emsi.HallBooking.domaine.RoleVo;
 import com.emsi.HallBooking.domaine.UserConverter;
 import com.emsi.HallBooking.domaine.UserVo;
 import com.emsi.HallBooking.service.IUserService;
-import com.emsi.HallBooking.service.model.AppUser;
+import com.emsi.HallBooking.model.AppUser;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
